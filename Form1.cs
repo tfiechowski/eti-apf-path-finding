@@ -66,8 +66,7 @@ namespace MobileRobotAPF {
                 source.Draw(graphics);
             });
 
-            Rectangle robotRectangle = new Rectangle(robot.x, robot.y, 20, 20);
-            graphics.FillEllipse(Brushes.Tomato, robotRectangle);
+            robot.Draw(graphics);
 
             if(checkEndCondition()) {
                 timerProgramLoop.Stop();
@@ -96,7 +95,7 @@ namespace MobileRobotAPF {
 
                 int x0 = rand.Next(100, this.Width - 100) + rand.Next(-20, 20);
                 int y0 = rand.Next(100, this.Height - 100) + rand.Next(-20, 20);
-                double charge = -1.5;
+                double charge = -2.0;
                 int radius = 40;
 
                 double startAngle = rand.Next(0, 359) * Math.PI / 180.0;

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -9,8 +10,6 @@ namespace MobileRobotAPF {
         public int x, y;
         public int velocity;
         public List<Source> obstacles;
-
-        private int ticks = 0;
 
         public Robot() {
             x = 10;
@@ -40,11 +39,10 @@ namespace MobileRobotAPF {
             });
 
 
-            double norm = Math.Sqrt(dx * dx + dy * dy);
+            double dLength = Math.Sqrt(dx * dx + dy * dy);
 
-            // double norm = Math.Abs(Math.Min(dx, dy));
-            dx /= norm;
-            dy /= norm;
+            dx /= dLength;
+            dy /= dLength;
 
             dx *= this.velocity;
             dy *= this.velocity;
@@ -59,8 +57,11 @@ namespace MobileRobotAPF {
 
             this.x += (int)dx;
             this.y += (int)dy;
+        }
 
-            ticks++;
+        public void Draw(Graphics graphics) {
+            Rectangle robotRectangle = new Rectangle(this.x - 10, this.y - 10, 20, 20);
+            graphics.FillEllipse(Brushes.Tomato, robotRectangle);
         }
     }
 }

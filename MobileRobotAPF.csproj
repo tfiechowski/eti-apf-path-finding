@@ -59,7 +59,6 @@
     <Compile Include="Robot.cs" />
     <Compile Include="RobotDestination.cs" />
     <Compile Include="Source.cs" />
-    <Compile Include="VectorField.cs" />
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
     </EmbeddedResource>
