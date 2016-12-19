@@ -9,13 +9,12 @@ namespace MobileRobotAPF {
         public int x, y;
         public int velocity;
         public List<Source> obstacles;
-        private double dt;
+
+        private int ticks = 0;
 
         public Robot() {
             x = 10;
             y = 10;
-
-            dt = 0.1;
 
             obstacles = new List<Source>();
         }
@@ -25,8 +24,6 @@ namespace MobileRobotAPF {
             this.y = y;
             this.velocity = velocity;
             this.obstacles = obstacles;
-
-            this.dt = 0.1;
         }
 
         public void Move() {
@@ -36,33 +33,34 @@ namespace MobileRobotAPF {
             obstacles.ForEach(delegate ( Source obstacle ) {
                 ForceVector forceVector = new ForceVector(obstacle.x, x, obstacle.y, y);
 
-                dx += (forceVector.dx * obstacle.charge) / (forceVector.width * forceVector.width);
-                dy += (forceVector.dy * obstacle.charge) / (forceVector.width * forceVector.width);
+                double squaredLength = forceVector.width * forceVector.width;
+
+                dx += ((obstacle.x - x) * obstacle.charge) / squaredLength;
+                dy += ((obstacle.y - y) * obstacle.charge) / squaredLength;
             });
 
-            if(Double.IsNaN(dx)) {
-                bool __marker1 = true;
-            }
 
-            double norm = Math.Sqrt(dx * dx + dy + dy);
+            double norm = Math.Sqrt(dx * dx + dy * dy);
+
+            // double norm = Math.Abs(Math.Min(dx, dy));
             dx /= norm;
             dy /= norm;
 
-            // dx *= this.velocity;
-            // dy *= this.velocity;
+            dx *= this.velocity;
+            dy *= this.velocity;
 
-            if(dx < 1) {
-                dx = 1;
+            if (dx < 1 && dx >= -1) {
+                dx = Math.Sign(dx);
             }
 
-            if(dy < 1) {
-                dy = 1;
+            if (dy < 1 && dy >= -1) {
+                dy = Math.Sign(dy);
             }
 
             this.x += (int)dx;
             this.y += (int)dy;
 
-            bool __marker = true;
+            ticks++;
         }
     }
 }

@@ -1,5 +1,5 @@
 ﻿namespace MobileRobotAPF {
-    partial class Form1 {
+    partial class ArtificialPotentialFieldPathFinding {
         /// <summary>
         /// Required designer variable.
         /// </summary>
@@ -27,14 +27,18 @@
             this.movementFieldBox = new System.Windows.Forms.PictureBox();
             this.buttonStart = new System.Windows.Forms.Button();
             this.timerProgramLoop = new System.Windows.Forms.Timer(this.components);
+            this.boxPendulumsAmount = new System.Windows.Forms.TextBox();
+            this.label1 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.movementFieldBox)).BeginInit();
             this.SuspendLayout();
             // 
             // movementFieldBox
             // 
-            this.movementFieldBox.Location = new System.Drawing.Point(12, 41);
+            this.movementFieldBox.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.movementFieldBox.Location = new System.Drawing.Point(0, 0);
             this.movementFieldBox.Name = "movementFieldBox";
-            this.movementFieldBox.Size = new System.Drawing.Size(560, 481);
+            this.movementFieldBox.Size = new System.Drawing.Size(584, 561);
+            this.movementFieldBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
             this.movementFieldBox.TabIndex = 0;
             this.movementFieldBox.TabStop = false;
             // 
@@ -51,22 +55,42 @@
             // 
             // timerProgramLoop
             // 
+            this.timerProgramLoop.Interval = 40;
             this.timerProgramLoop.Tick += new System.EventHandler(this.timerProgramLoop_Tick);
             // 
-            // Form1
+            // boxPendulumsAmount
+            // 
+            this.boxPendulumsAmount.Location = new System.Drawing.Point(211, 15);
+            this.boxPendulumsAmount.Name = "boxPendulumsAmount";
+            this.boxPendulumsAmount.Size = new System.Drawing.Size(100, 20);
+            this.boxPendulumsAmount.TabIndex = 2;
+            this.boxPendulumsAmount.Text = "2";
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(93, 17);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(112, 13);
+            this.label1.TabIndex = 3;
+            this.label1.Text = "Amount of pendulums:";
+            // 
+            // ArtificialPotentialFieldPathFinding
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(584, 561);
+            this.Controls.Add(this.label1);
+            this.Controls.Add(this.boxPendulumsAmount);
             this.Controls.Add(this.buttonStart);
             this.Controls.Add(this.movementFieldBox);
-            this.MaximizeBox = false;
             this.MinimizeBox = false;
-            this.Name = "Form1";
-            this.Text = "Form1";
+            this.Name = "ArtificialPotentialFieldPathFinding";
+            this.Text = "Artificial Potential Field Path Finding";
             this.Load += new System.EventHandler(this.Form1_Load);
             ((System.ComponentModel.ISupportInitialize)(this.movementFieldBox)).EndInit();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -75,6 +99,8 @@
         private System.Windows.Forms.PictureBox movementFieldBox;
         private System.Windows.Forms.Button buttonStart;
         private System.Windows.Forms.Timer timerProgramLoop;
+        private System.Windows.Forms.TextBox boxPendulumsAmount;
+        private System.Windows.Forms.Label label1;
     }
 }
 

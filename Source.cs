@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Data;
+using System.Drawing;
 
 namespace MobileRobotAPF {
     abstract class Source {
@@ -17,6 +19,10 @@ namespace MobileRobotAPF {
 
         public ForceVector calculateForceVector( Robot robot ) {
             return new ForceVector(this.x, robot.x, this.y, robot.y);
+        }
+
+        public virtual void Draw(Graphics graphics) {
+            graphics.DrawEllipse(Pens.Green, new RectangleF((float)this.x, (float)this.y, 10, 10));
         }
     }
 }
