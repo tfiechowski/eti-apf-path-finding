@@ -13,22 +13,44 @@ namespace MobileRobotAPF {
         private System.Drawing.Graphics graphics;
         private System.Drawing.Pen pen1 = new System.Drawing.Pen(Color.Black, 2F);
 
+        private Robot robot;
+        private Pendulum pendulum;
+        private List<Source> sources;
+
         public Form1() {
             InitializeComponent();
+
+            sources = new List<Source>();
+            sources.Add(new RobotDestination(400, 400));
+
+            pendulum = new Pendulum(200, 200, -5, 15, 200, 10, 50);
+            sources.Add(pendulum);
+
+            robot = new Robot(10,10, 5, sources);
         }
 
         private void Form1_Load( object sender, EventArgs e ) {
-            
+            timerProgramLoop.Start();
         }
 
         private void buttonStart_Click( object sender, EventArgs e ) {
-            graphics = movementFieldBox.CreateGraphics();
-            graphics.DrawLine(pen1, new Point(10, 10), new Point(790, 790));
-            graphics.DrawRectangle(pen1, 30, 30, 50, 60);
         }
 
         private void timerProgramLoop_Tick( object sender, EventArgs e ) {
-            
+            graphics = movementFieldBox.CreateGraphics();
+            graphics.Clear(Color.White);
+
+            pendulum.Move();
+
+            sources.ForEach(delegate (Source source) {
+                graphics.FillEllipse(Brushes.Black, new Rectangle((int)source.x, (int)source.y, 20, 20));
+            });
+
+            Rectangle robotRectangle = new Rectangle(robot.x, robot.y, 20, 20);
+            graphics.FillEllipse(Brushes.Tomato, robotRectangle);
+
+            robot.Move();
+            // System.Console.Out.WriteLine("Robot moving, engine working...");
         }
     }
 }

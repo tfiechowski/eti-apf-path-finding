@@ -5,13 +5,13 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace MobileRobotAPF {
-    class RobotDestination : Source, IForceField {
+    class RobotDestination : Source {
 
         public RobotDestination(int x, int y) : base(x, y, 10.0) {
             
         }
 
-        ForceVector IForceField.calculateForceVector( Robot robot ) {
+        public new  ForceVector calculateForceVector( Robot robot ) {
             ForceVector forceVector = new ForceVector(this.x, robot.x, this.y, robot.y);
 
             // This value is 'global', so width is set to fixed value.

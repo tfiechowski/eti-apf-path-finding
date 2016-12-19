@@ -51,7 +51,6 @@
             // 
             // timerProgramLoop
             // 
-            this.timerProgramLoop.Interval = 40;
             this.timerProgramLoop.Tick += new System.EventHandler(this.timerProgramLoop_Tick);
             // 
             // Form1
