@@ -29,6 +29,8 @@
             this.timerProgramLoop = new System.Windows.Forms.Timer(this.components);
             this.boxPendulumsAmount = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
+            this.labelPosition = new System.Windows.Forms.Label();
+            this.labelForceVector = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.movementFieldBox)).BeginInit();
             this.SuspendLayout();
             // 
@@ -37,11 +39,10 @@
             this.movementFieldBox.Dock = System.Windows.Forms.DockStyle.Fill;
             this.movementFieldBox.Location = new System.Drawing.Point(0, 0);
             this.movementFieldBox.Name = "movementFieldBox";
-            this.movementFieldBox.Size = new System.Drawing.Size(584, 577);
+            this.movementFieldBox.Size = new System.Drawing.Size(784, 561);
             this.movementFieldBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.movementFieldBox.TabIndex = 0;
             this.movementFieldBox.TabStop = false;
-            this.movementFieldBox.Click += new System.EventHandler(this.movementFieldBox_Click);
             this.movementFieldBox.Paint += new System.Windows.Forms.PaintEventHandler(this.movementFieldBox_Paint);
             // 
             // buttonStart
@@ -77,19 +78,41 @@
             this.label1.TabIndex = 3;
             this.label1.Text = "Amount of pendulums:";
             // 
+            // labelPosition
+            // 
+            this.labelPosition.AutoSize = true;
+            this.labelPosition.Location = new System.Drawing.Point(317, 18);
+            this.labelPosition.Name = "labelPosition";
+            this.labelPosition.Size = new System.Drawing.Size(83, 13);
+            this.labelPosition.TabIndex = 4;
+            this.labelPosition.Text = "Current position:";
+            // 
+            // labelForceVector
+            // 
+            this.labelForceVector.AutoSize = true;
+            this.labelForceVector.Location = new System.Drawing.Point(446, 18);
+            this.labelForceVector.Name = "labelForceVector";
+            this.labelForceVector.Size = new System.Drawing.Size(77, 13);
+            this.labelForceVector.TabIndex = 5;
+            this.labelForceVector.Text = "Current vector:";
+            // 
             // ArtificialPotentialFieldPathFinding
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(584, 577);
+            this.ClientSize = new System.Drawing.Size(784, 561);
+            this.Controls.Add(this.labelForceVector);
+            this.Controls.Add(this.labelPosition);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.boxPendulumsAmount);
             this.Controls.Add(this.buttonStart);
             this.Controls.Add(this.movementFieldBox);
+            this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "ArtificialPotentialFieldPathFinding";
             this.Text = "Artificial Potential Field Path Finding";
             this.Load += new System.EventHandler(this.Form1_Load);
+            this.ResizeEnd += new System.EventHandler(this.ArtificialPotentialFieldPathFinding_ResizeEnd);
             ((System.ComponentModel.ISupportInitialize)(this.movementFieldBox)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -103,6 +126,8 @@
         private System.Windows.Forms.Timer timerProgramLoop;
         private System.Windows.Forms.TextBox boxPendulumsAmount;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label labelPosition;
+        private System.Windows.Forms.Label labelForceVector;
     }
 }
 

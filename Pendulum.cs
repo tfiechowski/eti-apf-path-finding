@@ -62,7 +62,11 @@ namespace MobileRobotAPF {
         }
 
         public override void Draw( Graphics graphics ) {
-            graphics.FillEllipse(Brushes.SteelBlue, new RectangleF((float)this.x, (float)this.y, (float)this.radius, (float)this.radius));
+
+            float _x = (float)(this.x - this.radius / 2);
+            float _y = (float)(this.y - this.radius / 2);
+
+            graphics.FillEllipse(Brushes.SteelBlue, new RectangleF(_x, _y, (float)this.radius, (float)this.radius));
         }
     }
 }

@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 namespace MobileRobotAPF {
     class Robot {
         public int x, y;
+        public double currentDx, currentDy;
         public int velocity;
         public List<Source> obstacles;
 
@@ -34,6 +35,11 @@ namespace MobileRobotAPF {
 
                 double squaredLength = forceVector.width * forceVector.width;
 
+                // This multiplication 'smooths' a robot movement
+                if (obstacle is Pendulum) {
+                    squaredLength *= 2.0;
+                }
+
                 dx += ((obstacle.x - x) * obstacle.charge) / squaredLength;
                 dy += ((obstacle.y - y) * obstacle.charge) / squaredLength;
             });
@@ -57,6 +63,9 @@ namespace MobileRobotAPF {
 
             this.x += (int)dx;
             this.y += (int)dy;
+
+            this.currentDx = dx;
+            this.currentDy = dy;
         }
 
         public void Draw(Graphics graphics) {

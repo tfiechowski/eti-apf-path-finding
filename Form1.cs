@@ -26,13 +26,16 @@ namespace MobileRobotAPF {
             InitializeComponent();
             timerProgramLoop.Stop();
             generateRandomStartState();
+            updateBitmap();
+        }
 
+        private void updateBitmap() {
             bitmap = new Bitmap(this.Width, this.Height);
             graphics = Graphics.FromImage(bitmap);
         }
 
         private void Form1_Load( object sender, EventArgs e ) {
-            timerProgramLoop.Start();
+            timerProgramLoop.Stop();
         }
 
         private void buttonStart_Click( object sender, EventArgs e ) {
@@ -57,7 +60,6 @@ namespace MobileRobotAPF {
         }
 
         private void timerProgramLoop_Tick( object sender, EventArgs e ) {
-            // graphics = movementFieldBox.CreateGraphics();
             graphics.Clear(Color.White);
 
             robot.Move();
@@ -77,6 +79,8 @@ namespace MobileRobotAPF {
                 timerProgramLoop.Stop();
                 MessageBox.Show("Success!");
             }
+
+            updateRobotPositionAndForce();
 
             movementFieldBox.Invalidate();
         }
@@ -98,10 +102,11 @@ namespace MobileRobotAPF {
             destination = new RobotDestination(this.Width + rand.Next(-150, -50), this.Height + rand.Next(-150,-50));
             sources.Add(destination);
 
+            int spacer = 200;
             for(int i = 0; i < pendulumsAmount; i++) {
 
-                int x0 = rand.Next(100, this.Width - 100) + rand.Next(-20, 20);
-                int y0 = rand.Next(100, this.Height - 100) + rand.Next(-20, 20);
+                int x0 = rand.Next(spacer, this.Width - spacer) + rand.Next(-20, 20);
+                int y0 = rand.Next(spacer, this.Height - spacer) + rand.Next(-20, 20);
                 double charge = -2.0;
                 int radius = 40;
 
@@ -112,15 +117,24 @@ namespace MobileRobotAPF {
                 sources.Add(pendulum);
             }
 
-            robot = new Robot(10, 10, 6, sources);
+            robot = new Robot(10, 10, 10, sources);
         }
 
         private void movementFieldBox_Paint( object sender, PaintEventArgs e ) {
             e.Graphics.DrawImage(bitmap, 0, 0);
         }
 
-        private void movementFieldBox_Click( object sender, EventArgs e ) {
+        private void ArtificialPotentialFieldPathFinding_ResizeEnd( object sender, EventArgs e ) {
+            //movementFieldBox.SetBounds(0, 0, this.Width, this.Height);
+            updateBitmap();
+        }
 
+        private void updateRobotPositionAndForce() {
+            labelPosition.Text = "Position: (x: " + robot.x + ", y: " + robot.y + ")";
+
+            double dx = Math.Round(robot.currentDx, 2);
+            double dy = Math.Round(robot.currentDy, 2);
+            labelForceVector.Text = "Vector: (dx: " + dx + ", dy: " + dy + ")";
         }
     }
 }
