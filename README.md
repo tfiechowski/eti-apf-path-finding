@@ -1,6 +1,8 @@
 # Artificial Potential Field for mobile robot path finding
 A project showing the Artificial Potential Field method for robot path finding.
 
+It was written for the assessment for Mobile Robots course. 
+
 ## Overview
 
 There is a bright red robot on the field, and its goal is to reach the destination point showed in light green. 
