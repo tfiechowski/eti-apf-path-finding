@@ -15,6 +15,8 @@ namespace MobileRobotAPF {
 
         private int pendulumsAmount = 2;
 
+        private Bitmap bitmap = new Bitmap(20, 20);
+
         private Robot robot;
         private Pendulum pendulum;
         private List<Source> sources;
@@ -24,6 +26,9 @@ namespace MobileRobotAPF {
             InitializeComponent();
             timerProgramLoop.Stop();
             generateRandomStartState();
+
+            bitmap = new Bitmap(this.Width, this.Height);
+            graphics = Graphics.FromImage(bitmap);
         }
 
         private void Form1_Load( object sender, EventArgs e ) {
@@ -52,7 +57,7 @@ namespace MobileRobotAPF {
         }
 
         private void timerProgramLoop_Tick( object sender, EventArgs e ) {
-            graphics = movementFieldBox.CreateGraphics();
+            // graphics = movementFieldBox.CreateGraphics();
             graphics.Clear(Color.White);
 
             robot.Move();
@@ -72,6 +77,8 @@ namespace MobileRobotAPF {
                 timerProgramLoop.Stop();
                 MessageBox.Show("Success!");
             }
+
+            movementFieldBox.Invalidate();
         }
 
         private bool checkEndCondition() {
@@ -106,6 +113,14 @@ namespace MobileRobotAPF {
             }
 
             robot = new Robot(10, 10, 6, sources);
+        }
+
+        private void movementFieldBox_Paint( object sender, PaintEventArgs e ) {
+            e.Graphics.DrawImage(bitmap, 0, 0);
+        }
+
+        private void movementFieldBox_Click( object sender, EventArgs e ) {
+
         }
     }
 }

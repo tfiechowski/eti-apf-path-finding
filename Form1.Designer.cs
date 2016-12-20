@@ -37,10 +37,12 @@
             this.movementFieldBox.Dock = System.Windows.Forms.DockStyle.Fill;
             this.movementFieldBox.Location = new System.Drawing.Point(0, 0);
             this.movementFieldBox.Name = "movementFieldBox";
-            this.movementFieldBox.Size = new System.Drawing.Size(584, 561);
-            this.movementFieldBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
+            this.movementFieldBox.Size = new System.Drawing.Size(584, 577);
+            this.movementFieldBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.movementFieldBox.TabIndex = 0;
             this.movementFieldBox.TabStop = false;
+            this.movementFieldBox.Click += new System.EventHandler(this.movementFieldBox_Click);
+            this.movementFieldBox.Paint += new System.Windows.Forms.PaintEventHandler(this.movementFieldBox_Paint);
             // 
             // buttonStart
             // 
@@ -79,7 +81,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(584, 561);
+            this.ClientSize = new System.Drawing.Size(584, 577);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.boxPendulumsAmount);
             this.Controls.Add(this.buttonStart);
